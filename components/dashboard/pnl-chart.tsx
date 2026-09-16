@@ -46,9 +46,9 @@ function ChartTooltip({ active, payload }: TooltipContentProps) {
   const isDailyUp = point.dailyPnl >= 0;
 
   return (
-    <div className="border-surface-border bg-surface-overlay/95 rounded-xl border px-3 py-2 shadow-xl backdrop-blur">
-      <p className="text-[11px] font-medium text-slate-400">{point.date}</p>
-      <p className="tabular mt-1 text-sm font-bold text-slate-100">
+    <div className="border-surface-border bg-surface-raised rounded-sm border px-3 py-2">
+      <p className="text-[11px] font-medium text-[#787b86]">{point.date}</p>
+      <p className="tabular mt-1 text-sm font-semibold text-[#f0f3fa]">
         누적 {formatUsd(point.cumulativePnl, { signed: true })}
       </p>
       <p
@@ -89,8 +89,7 @@ export function PnlChart({ data }: PnlChartProps) {
       <CardHeader className="flex-row items-start justify-between gap-4">
         <div className="flex flex-col gap-1">
           <CardTitle>
-            <Activity className="text-profit size-4" aria-hidden />
-            일별 누적 손익 (수익 곡선)
+            일별 누적 손익
           </CardTitle>
           <CardDescription>
             수수료를 차감한 실현 손익 기준 · KST 마감 집계
@@ -118,7 +117,7 @@ export function PnlChart({ data }: PnlChartProps) {
         <div
           role="group"
           aria-label="기간 선택"
-          className="border-surface-border flex shrink-0 rounded-lg border bg-slate-950/60 p-0.5"
+          className="border-surface-border flex shrink-0 rounded-sm border bg-[#131722] p-px"
         >
           {RANGES.map((item) => (
             <button
@@ -127,10 +126,10 @@ export function PnlChart({ data }: PnlChartProps) {
               onClick={() => setRange(item.id)}
               aria-pressed={range === item.id}
               className={cn(
-                "rounded-md px-2.5 py-1 text-[11px] font-semibold transition-colors",
+                "rounded-sm px-2.5 py-1 text-[11px] font-medium transition-colors",
                 range === item.id
-                  ? "bg-slate-700/70 text-slate-100"
-                  : "text-slate-500 hover:text-slate-300"
+                  ? "bg-surface-overlay text-[#f0f3fa]"
+                  : "text-[#787b86] hover:text-[#d1d4dc]"
               )}
             >
               {item.label}
@@ -158,27 +157,27 @@ export function PnlChart({ data }: PnlChartProps) {
             >
               <defs>
                 <linearGradient id="pnlGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#10B981" stopOpacity={0.35} />
-                  <stop offset="100%" stopColor="#10B981" stopOpacity={0} />
+                  <stop offset="0%" stopColor="#26a69a" stopOpacity={0.22} />
+                  <stop offset="100%" stopColor="#26a69a" stopOpacity={0} />
                 </linearGradient>
               </defs>
 
               <CartesianGrid
-                stroke="#1E293B"
-                strokeDasharray="3 3"
+                stroke="#2b3240"
+                strokeDasharray="2 4"
                 vertical={false}
               />
               <XAxis
                 dataKey="date"
-                stroke="#475569"
-                tick={{ fontSize: 11, fill: "#64748B" }}
+                stroke="#434651"
+                tick={{ fontSize: 11, fill: "#787b86" }}
                 tickLine={false}
-                axisLine={{ stroke: "#1E293B" }}
+                axisLine={{ stroke: "#2b3240" }}
                 minTickGap={24}
               />
               <YAxis
-                stroke="#475569"
-                tick={{ fontSize: 11, fill: "#64748B" }}
+                stroke="#434651"
+                tick={{ fontSize: 11, fill: "#787b86" }}
                 tickLine={false}
                 axisLine={false}
                 width={64}
@@ -186,24 +185,24 @@ export function PnlChart({ data }: PnlChartProps) {
                   formatUsd(value, { decimals: 0 })
                 }
               />
-              <ReferenceLine y={0} stroke="#334155" strokeWidth={1} />
+              <ReferenceLine y={0} stroke="#363a45" strokeWidth={1} />
               <Tooltip
                 content={ChartTooltip}
-                cursor={{ stroke: "#10B981", strokeDasharray: "4 4" }}
+                cursor={{ stroke: "#26a69a", strokeDasharray: "3 3" }}
               />
               <Area
-                type="monotone"
+                type="linear"
                 dataKey="cumulativePnl"
                 name="누적 손익"
-                stroke="#10B981"
-                strokeWidth={2}
+                stroke="#26a69a"
+                strokeWidth={1.5}
                 fill="url(#pnlGradient)"
                 dot={false}
                 activeDot={{
-                  r: 4,
-                  fill: "#10B981",
-                  stroke: "#022C22",
-                  strokeWidth: 2,
+                  r: 3,
+                  fill: "#26a69a",
+                  stroke: "#131722",
+                  strokeWidth: 1,
                 }}
               />
             </AreaChart>
@@ -211,15 +210,15 @@ export function PnlChart({ data }: PnlChartProps) {
         )}
       </div>
 
-      <div className="border-surface-border grid grid-cols-3 divide-x divide-slate-800 border-t text-center">
+      <div className="border-surface-border grid grid-cols-3 divide-x divide-[#2b3240] border-t text-center">
         <div className="px-3 py-2.5">
-          <p className="text-[10px] text-slate-500">최고 누적</p>
+          <p className="text-[10px] text-[#787b86]">최고 누적</p>
           <p className="tabular text-profit text-xs font-semibold">
             {formatUsd(peak, { signed: true })}
           </p>
         </div>
         <div className="px-3 py-2.5">
-          <p className="text-[10px] text-slate-500">고점 대비</p>
+          <p className="text-[10px] text-[#787b86]">고점 대비</p>
           <p
             className={cn(
               "tabular text-xs font-semibold",
@@ -230,8 +229,8 @@ export function PnlChart({ data }: PnlChartProps) {
           </p>
         </div>
         <div className="px-3 py-2.5">
-          <p className="text-[10px] text-slate-500">집계 일수</p>
-          <p className="tabular text-xs font-semibold text-slate-300">
+          <p className="text-[10px] text-[#787b86]">집계 일수</p>
+          <p className="tabular text-xs font-semibold text-[#d1d4dc]">
             {visible.length}일
           </p>
         </div>

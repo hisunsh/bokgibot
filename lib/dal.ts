@@ -52,3 +52,23 @@ export async function requireUserId() {
   }
   return session.user.id;
 }
+
+/** 슈퍼 계정만 통과하는 API. 일반 사용자는 403. */
+export async function requireAdminId() {
+  const session = await getSession();
+  if (!session) {
+    throw new SyncError(
+      "UNAUTHORIZED",
+      "로그인이 필요합니다. 다시 로그인한 뒤 시도해 주세요.",
+      401
+    );
+  }
+  if (!isAdminRole(session.user.role)) {
+    throw new SyncError(
+      "UNAUTHORIZED",
+      "슈퍼 계정만 접근할 수 있습니다.",
+      403
+    );
+  }
+  return session.user.id;
+}

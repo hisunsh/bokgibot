@@ -1,0 +1,25 @@
+# 빌드 컨텍스트를 작게 유지하고, 로컬 비밀·데이터가 이미지로 새어 들어가는 것을 막는다.
+
+node_modules
+.next
+.git
+.gitignore
+
+# 로컬 시크릿. 절대 이미지에 들어가면 안 된다.
+.env
+.env.*
+!.env.example
+
+# 로컬 SQLite 파일과 WAL 동반 파일
+*.db
+*.db-shm
+*.db-wal
+
+Dockerfile
+.dockerignore
+fly.toml
+README.md
+npm-debug.log*
+.DS_Store
+terminals
+scripts

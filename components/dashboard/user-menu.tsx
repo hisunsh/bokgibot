@@ -32,7 +32,7 @@ export function UserMenu({ name, email, role }: UserMenuProps) {
   return (
     <div className="flex items-center gap-2">
       <div className="hidden flex-col items-end sm:flex">
-        <span className="flex items-center gap-1.5 text-xs font-semibold text-slate-200">
+        <span className="flex items-center gap-1.5 text-xs font-medium text-[#d1d4dc]">
           {name}
           {isSuperRole(role) ? (
             <Badge variant="vip">
@@ -46,13 +46,13 @@ export function UserMenu({ name, email, role }: UserMenuProps) {
       {isAdminRole(role) ? (
         <Link
           href="/admin"
-          className="hidden text-[11px] font-semibold text-amber-300 hover:underline sm:inline"
+          className="text-[11px] font-semibold text-amber-300 hover:underline"
         >
           콘솔
         </Link>
       ) : null}
-      <span className="border-surface-border flex size-8 items-center justify-center rounded-lg border bg-slate-800/70">
-        <UserRound className="size-4 text-slate-400" aria-hidden />
+      <span className="border-surface-border bg-surface-overlay flex size-7 items-center justify-center rounded-sm border">
+        <UserRound className="size-3.5 text-[#787b86]" aria-hidden />
       </span>
       <Button
         variant="ghost"

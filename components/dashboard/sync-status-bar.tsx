@@ -26,10 +26,10 @@ export function SyncStatusBar({ snapshot }: SyncStatusBarProps) {
   return (
     <div
       className={cn(
-        "rounded-xl border px-4 py-2.5",
+        "rounded-sm border px-3 py-2",
         isLive
-          ? "border-profit/25 bg-profit/5"
-          : "border-surface-border bg-surface-raised/50"
+          ? "border-profit/30 bg-profit/5"
+          : "border-surface-border bg-surface-raised"
       )}
     >
       <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
@@ -42,7 +42,7 @@ export function SyncStatusBar({ snapshot }: SyncStatusBarProps) {
           {isLive ? "실제 매매 기록" : "예시 데이터"}
         </Badge>
 
-        <p className="text-[11px] text-slate-400">
+        <p className="text-[11px] text-[#787b86]">
           {isLive ? (
             <>
               최근 {snapshot.lookbackDays}일 · 심볼 {snapshot.symbols.length}개 ·
@@ -60,7 +60,7 @@ export function SyncStatusBar({ snapshot }: SyncStatusBarProps) {
         </p>
 
         {isLive ? (
-          <span className="tabular text-[11px] text-slate-500">
+          <span className="tabular text-[11px] text-[#5d606b]">
             {formatSyncedAt(snapshot.syncedAt)} 기준
           </span>
         ) : null}

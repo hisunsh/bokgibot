@@ -186,7 +186,7 @@ export function ApiConnectCard({
 
       <CardContent className="flex flex-1 flex-col gap-4">
         {connected ? null : (
-          <div className="flex items-start gap-2 rounded-xl border border-red-500/25 bg-red-500/10 px-3 py-2.5">
+          <div className="flex items-start gap-2 rounded-sm border border-loss/30 bg-loss/10 px-3 py-2">
             <TriangleAlert
               className="text-loss mt-0.5 size-4 shrink-0"
               aria-hidden
@@ -266,7 +266,7 @@ export function ApiConnectCard({
               id="lookback"
               role="group"
               aria-label="조회 기간 선택"
-              className="border-surface-border flex rounded-xl border bg-slate-950/60 p-0.5"
+              className="border-surface-border flex rounded-sm border bg-[#131722] p-px"
             >
               {LOOKBACK_OPTIONS.map((days) => (
                 <button
@@ -276,10 +276,10 @@ export function ApiConnectCard({
                   aria-pressed={lookbackDays === days}
                   disabled={isSyncing}
                   className={cn(
-                    "flex-1 rounded-lg px-2 py-1.5 text-[11px] font-semibold transition-colors disabled:opacity-50",
+                    "flex-1 rounded-sm px-2 py-1.5 text-[11px] font-medium transition-colors disabled:opacity-50",
                     lookbackDays === days
-                      ? "bg-slate-700/70 text-slate-100"
-                      : "text-slate-500 hover:text-slate-300"
+                      ? "bg-surface-overlay text-[#f0f3fa]"
+                      : "text-[#787b86] hover:text-[#d1d4dc]"
                   )}
                 >
                   최근 {days}일
@@ -320,7 +320,7 @@ export function ApiConnectCard({
           ) : null}
         </form>
 
-        <div className="border-surface-border mt-auto rounded-xl border bg-slate-950/40 p-3">
+        <div className="border-surface-border mt-auto rounded-sm border bg-[#181c27] p-3">
           <p className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-300">
             <ShieldAlert className="size-3.5 text-amber-300" aria-hidden />
             키 처리 방식

@@ -4,16 +4,16 @@ import { cn } from "@/lib/utils";
 
 const buttonVariants = {
   primary:
-    "bg-emerald-500 text-emerald-950 hover:bg-emerald-400 disabled:hover:bg-emerald-500",
+    "bg-profit text-[#131722] hover:bg-profit-soft disabled:hover:bg-profit",
   secondary:
-    "border border-surface-border bg-slate-800/60 text-slate-200 hover:bg-slate-800",
-  ghost: "text-slate-400 hover:bg-slate-800/60 hover:text-slate-100",
+    "border border-surface-border bg-surface-overlay text-[#d1d4dc] hover:bg-[#363a45]",
+  ghost: "text-[#787b86] hover:bg-surface-overlay hover:text-[#d1d4dc]",
 } as const;
 
 const buttonSizes = {
-  sm: "h-8 gap-1.5 px-3 text-xs",
-  md: "h-10 gap-2 px-4 text-sm",
-  lg: "h-11 gap-2 px-5 text-sm",
+  sm: "h-7 gap-1.5 px-2.5 text-[11px]",
+  md: "h-9 gap-2 px-3.5 text-[13px]",
+  lg: "h-10 gap-2 px-4 text-[13px]",
 } as const;
 
 type ButtonProps = ComponentProps<"button"> & {
@@ -32,8 +32,8 @@ export function Button({
     <button
       type={type}
       className={cn(
-        "inline-flex items-center justify-center rounded-xl font-semibold transition-colors",
-        "focus-visible:ring-2 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 focus-visible:outline-none",
+        "inline-flex items-center justify-center rounded-sm font-medium transition-colors",
+        "focus-visible:ring-profit/50 focus-visible:ring-offset-surface-base focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
         "disabled:cursor-not-allowed disabled:opacity-50",
         buttonVariants[variant],
         buttonSizes[size],

@@ -6,7 +6,6 @@ import {
   CircleDollarSign,
   Filter,
   Hash,
-  Receipt,
   TrendingDown,
   TrendingUp,
 } from "lucide-react";
@@ -73,7 +72,6 @@ export function TradeHistoryTable({ trades }: TradeHistoryTableProps) {
       <CardHeader className="flex-row flex-wrap items-start justify-between gap-4">
         <div className="flex flex-col gap-1">
           <CardTitle>
-            <Receipt className="text-profit size-4" aria-hidden />
             최근 복기 내역
           </CardTitle>
           <CardDescription>
@@ -106,7 +104,7 @@ export function TradeHistoryTable({ trades }: TradeHistoryTableProps) {
           <div
             role="group"
             aria-label="거래 내역 필터"
-            className="border-surface-border flex items-center gap-0.5 rounded-lg border bg-slate-950/60 p-0.5"
+            className="border-surface-border flex items-center gap-0.5 rounded-sm border bg-[#131722] p-px"
           >
             <Filter className="mx-1.5 size-3 text-slate-600" aria-hidden />
             {FILTERS.map((item) => (
@@ -116,10 +114,10 @@ export function TradeHistoryTable({ trades }: TradeHistoryTableProps) {
                 onClick={() => setFilter(item.id)}
                 aria-pressed={filter === item.id}
                 className={cn(
-                  "rounded-md px-2.5 py-1 text-[11px] font-semibold transition-colors",
+                  "rounded-sm px-2.5 py-1 text-[11px] font-medium transition-colors",
                   filter === item.id
-                    ? "bg-slate-700/70 text-slate-100"
-                    : "text-slate-500 hover:text-slate-300"
+                    ? "bg-surface-overlay text-[#f0f3fa]"
+                    : "text-[#787b86] hover:text-[#d1d4dc]"
                 )}
               >
                 {item.label}
@@ -132,7 +130,7 @@ export function TradeHistoryTable({ trades }: TradeHistoryTableProps) {
       <div className="scrollbar-thin overflow-x-auto">
         <table className="w-full min-w-[1080px] border-collapse text-sm">
           <thead>
-            <tr className="border-surface-border border-y bg-slate-950/40 text-[11px] text-slate-500">
+            <tr className="border-surface-border bg-[#181c27] text-[11px] text-[#787b86] border-y">
               <th scope="col" className="px-5 py-2.5 text-left font-medium">
                 체결 일시
               </th>
@@ -169,7 +167,7 @@ export function TradeHistoryTable({ trades }: TradeHistoryTableProps) {
               return (
                 <tr
                   key={trade.id}
-                  className="border-surface-border/70 border-b transition-colors last:border-b-0 hover:bg-slate-800/30"
+                  className="border-surface-border/70 border-b transition-colors last:border-b-0 hover:bg-[#181c27]"
                 >
                   <td className="tabular px-5 py-3 text-xs whitespace-nowrap text-slate-400">
                     {formatDateTime(trade.closedAt)}

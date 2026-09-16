@@ -56,15 +56,15 @@ export function DashboardView({
   );
 
   return (
-    <div className="bg-grid flex min-h-full flex-col">
+    <div className="flex min-h-full flex-col">
       <SiteHeader referral={liveReferral} user={user} />
 
-      <main className="mx-auto flex w-full max-w-[1600px] flex-1 flex-col gap-4 px-4 py-6 sm:px-6">
+      <main className="mx-auto flex w-full max-w-[1600px] flex-1 flex-col gap-3 px-4 py-4 sm:px-5">
         <SyncStatusBar snapshot={snapshot} />
 
         <PerformanceSummaryGrid summary={snapshot.summary} />
 
-        <section className="grid grid-cols-1 gap-4 lg:grid-cols-12">
+        <section className="grid grid-cols-1 gap-3 lg:grid-cols-12">
           <div className="lg:col-span-8">
             <PnlChart data={snapshot.equityCurve} />
           </div>
@@ -85,7 +85,7 @@ export function DashboardView({
         <TradeHistoryTable trades={snapshot.trades} />
       </main>
 
-      <footer className="border-surface-border border-t px-4 py-4 text-center text-[11px] text-slate-600 sm:px-6">
+      <footer className="border-surface-border border-t px-4 py-3 text-center text-[11px] text-[#5d606b] sm:px-5">
         복기봇 (Bokgibot) ·{" "}
         {isLive
           ? "바이낸스 USDT-M 선물 체결 내역 기준으로 계산했습니다. 투자 판단의 근거로 사용할 수 없습니다."

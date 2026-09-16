@@ -62,7 +62,7 @@ function TagGroup({
             <span
               key={item.tag}
               className={cn(
-                "flex items-center gap-1.5 rounded-lg border px-2 py-1 text-[11px]",
+                "flex items-center gap-1.5 rounded-sm border px-2 py-1 text-[11px]",
                 isUp
                   ? "border-profit/25 bg-profit/5"
                   : "border-loss/25 bg-loss/5"

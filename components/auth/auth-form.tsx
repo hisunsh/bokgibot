@@ -1,14 +1,11 @@
 "use client";
 
 import {
-  Bot,
   Eye,
   EyeOff,
   Loader2,
   Lock,
   Mail,
-  ShieldCheck,
-  Sparkles,
   User,
 } from "lucide-react";
 import Link from "next/link";
@@ -16,7 +13,6 @@ import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { toast } from "sonner";
 
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input, Label } from "@/components/ui/input";
@@ -111,55 +107,18 @@ export function AuthForm({ mode }: AuthFormProps) {
   }
 
   return (
-    <div className="bg-grid flex min-h-full flex-1 flex-col items-center justify-center px-4 py-12">
-      <div className="w-full max-w-[400px]">
-        <div className="mb-6 flex flex-col items-center gap-3 text-center">
-          <span className="border-profit/30 bg-profit/10 flex size-12 items-center justify-center rounded-2xl border">
-            <Bot className="text-profit size-6" aria-hidden />
-          </span>
-          <div className="flex items-center gap-2">
-            <h1 className="text-xl font-bold tracking-tight text-slate-50">
-              복기봇 <span className="text-slate-500">(Bokgibot)</span>
-            </h1>
-            <Badge variant="vip">
-              <Sparkles className="size-3" aria-hidden />
-              VIP Beta
-            </Badge>
-          </div>
-          <p className="text-xs text-slate-500">
+    <div className="flex min-h-full flex-1 flex-col items-center justify-center px-4 py-12">
+      <div className="w-full max-w-[360px]">
+        <div className="mb-6">
+          <h1 className="text-[22px] font-bold tracking-tight text-[#f0f3fa]">
+            복기봇
+          </h1>
+          <p className="mt-1 text-[13px] text-[#787b86]">
             {isSignup
-              ? "계정을 만든 뒤에만 바이낸스 키를 연동할 수 있습니다."
-              : "로그인한 계정에만 거래소 키와 매매일지가 묶입니다."}
+              ? "계정을 만든 뒤 바이낸스 키를 연동합니다."
+              : "로그인하면 매매일지가 계정에 묶입니다."}
           </p>
         </div>
-
-        <ol className="mb-4 grid grid-cols-3 gap-2 text-center">
-          {(
-            [
-              ["1", "계정 만들기"],
-              ["2", "API 연동"],
-              ["3", "자동 복기"],
-            ] as const
-          ).map(([step, label], index) => (
-            <li
-              key={step}
-              className="border-surface-border bg-surface-raised/60 rounded-xl border px-2 py-2"
-            >
-              <p
-                className={
-                  index === 0
-                    ? "text-profit text-[10px] font-semibold"
-                    : "text-[10px] font-semibold text-slate-500"
-                }
-              >
-                STEP {step}
-              </p>
-              <p className="mt-0.5 text-[11px] font-medium text-slate-300">
-                {label}
-              </p>
-            </li>
-          ))}
-        </ol>
 
         <Card>
           <CardContent className="pt-5">
@@ -246,18 +205,17 @@ export function AuthForm({ mode }: AuthFormProps) {
                     <Loader2 className="size-4 animate-spin" aria-hidden />
                     처리 중...
                   </>
+                ) : isSignup ? (
+                  "가입하기"
                 ) : (
-                  <>
-                    <ShieldCheck className="size-4" aria-hidden />
-                    {isSignup ? "가입하고 시작하기" : "로그인"}
-                  </>
+                  "로그인"
                 )}
               </Button>
             </form>
           </CardContent>
         </Card>
 
-        <p className="mt-4 text-center text-xs text-slate-500">
+        <p className="mt-4 text-center text-xs text-[#787b86]">
           {isSignup ? "이미 계정이 있으신가요?" : "아직 계정이 없으신가요?"}{" "}
           <Link
             href={isSignup ? "/login" : "/signup"}

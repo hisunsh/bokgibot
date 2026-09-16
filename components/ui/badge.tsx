@@ -3,14 +3,14 @@ import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
 const badgeVariants = {
-  default: "border-slate-700 bg-slate-800/80 text-slate-300",
-  vip: "border-amber-400/30 bg-amber-400/10 text-amber-300",
-  long: "border-profit/30 bg-profit/10 text-profit-soft",
-  short: "border-loss/30 bg-loss/10 text-loss-soft",
-  profit: "border-profit/30 bg-profit/10 text-profit-soft",
-  loss: "border-loss/30 bg-loss/10 text-loss-soft",
-  tag: "border-slate-700/70 bg-slate-800/50 text-slate-400",
-  info: "border-sky-400/30 bg-sky-400/10 text-sky-300",
+  default: "border-surface-border bg-surface-overlay text-[#b2b5be]",
+  vip: "border-[#5d4a1f] bg-[#3a3118] text-[#d1b15a]",
+  long: "border-profit/35 bg-profit/10 text-profit-soft",
+  short: "border-loss/35 bg-loss/10 text-loss-soft",
+  profit: "border-profit/35 bg-profit/10 text-profit-soft",
+  loss: "border-loss/35 bg-loss/10 text-loss-soft",
+  tag: "border-surface-border bg-[#181c27] text-[#787b86]",
+  info: "border-[#2962ff]/30 bg-[#2962ff]/10 text-[#90caf9]",
 } as const;
 
 export type BadgeVariant = keyof typeof badgeVariants;
@@ -23,7 +23,7 @@ export function Badge({ className, variant = "default", ...props }: BadgeProps) 
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-[11px] leading-5 font-medium whitespace-nowrap",
+        "inline-flex items-center gap-1 rounded-sm border px-1.5 py-px text-[10px] leading-5 font-medium whitespace-nowrap",
         badgeVariants[variant],
         className
       )}

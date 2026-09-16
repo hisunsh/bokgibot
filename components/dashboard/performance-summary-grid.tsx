@@ -37,7 +37,7 @@ export function PerformanceSummaryGrid({
   return (
     <section
       aria-label="핵심 성과 지표"
-      className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4"
+      className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4"
     >
       <StatCard
         label="총 실현 손익 (Net PnL)"

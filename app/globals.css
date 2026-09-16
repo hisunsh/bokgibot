@@ -1,20 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-sans: var(--font-noto), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
 
-  /* 트레이딩뷰 계열의 깊이감 있는 배경 레이어 */
-  --color-surface-base: #09090b;
-  --color-surface-raised: #0f172a;
-  --color-surface-overlay: #16203a;
-  --color-surface-border: #1e293b;
+  --color-surface-base: #131722;
+  --color-surface-raised: #1e222d;
+  --color-surface-overlay: #2a2e39;
+  --color-surface-border: #2b3240;
 
-  /* 손익 색상 체계: 수익 emerald-500 / 손실 red-500 */
-  --color-profit: #10b981;
-  --color-profit-soft: #34d399;
-  --color-loss: #ef4444;
-  --color-loss-soft: #f87171;
+  --color-profit: #26a69a;
+  --color-profit-soft: #4caf9a;
+  --color-loss: #ef5350;
+  --color-loss-soft: #f27c79;
 }
 
 @layer base {
@@ -24,12 +22,11 @@
 
   body {
     background-color: var(--color-surface-base);
-    color: var(--color-slate-100);
+    color: #d1d4dc;
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
 
-  /* 숫자 정렬이 흔들리지 않도록 지표/가격에는 고정폭 숫자를 사용 */
   .tabular {
     font-variant-numeric: tabular-nums;
     font-family: var(--font-mono);
@@ -37,17 +34,9 @@
 }
 
 @layer utilities {
-  /* 대시보드 배경의 미세한 그리드 텍스처 */
-  .bg-grid {
-    background-image:
-      linear-gradient(to right, rgb(148 163 184 / 0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(148 163 184 / 0.05) 1px, transparent 1px);
-    background-size: 48px 48px;
-  }
-
   .scrollbar-thin {
     scrollbar-width: thin;
-    scrollbar-color: var(--color-slate-700) transparent;
+    scrollbar-color: #363a45 transparent;
   }
 
   .scrollbar-thin::-webkit-scrollbar {
@@ -56,8 +45,8 @@
   }
 
   .scrollbar-thin::-webkit-scrollbar-thumb {
-    background-color: var(--color-slate-700);
-    border-radius: 9999px;
+    background-color: #363a45;
+    border-radius: 0;
   }
 
   .scrollbar-thin::-webkit-scrollbar-track {

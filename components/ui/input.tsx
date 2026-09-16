@@ -6,9 +6,9 @@ export function Input({ className, ...props }: ComponentProps<"input">) {
   return (
     <input
       className={cn(
-        "border-surface-border h-10 w-full rounded-xl border bg-slate-950/60 px-3 text-sm text-slate-100",
-        "placeholder:text-slate-600",
-        "focus:border-emerald-500/60 focus:ring-2 focus:ring-emerald-500/20 focus:outline-none",
+        "border-surface-border h-9 w-full rounded-sm border bg-[#131722] px-3 text-[13px] text-[#d1d4dc]",
+        "placeholder:text-[#4c525e]",
+        "focus:border-profit/70 focus:outline-none",
         "disabled:cursor-not-allowed disabled:opacity-60",
         className
       )}
@@ -23,7 +23,7 @@ export function Label({ className, ...props }: LabelProps) {
   return (
     <label
       className={cn(
-        "flex items-center gap-1.5 text-xs font-medium text-slate-400",
+        "flex items-center gap-1.5 text-[11px] font-medium text-[#787b86]",
         className
       )}
       {...props}

@@ -1,0 +1,44 @@
+# 복기봇 Fly.io 배포 설정
+#
+# 이 앱은 반드시 단일 머신으로 돌려야 한다. 이유가 두 가지다.
+#   1. SQLite 를 Fly 볼륨에 두는데, 볼륨은 여러 머신이 동시에 붙을 수 없다.
+#   2. 레이트 리미터가 프로세스 메모리에만 있어서, 인스턴스가 늘면 무력화된다.
+# 여러 인스턴스로 확장해야 할 시점이 오면 DB 를 Postgres 로, 리미터를 Redis 로
+# 옮긴 뒤에 스케일을 건드릴 것.
+
+app = "bokgibot"
+primary_region = "nrt"  # 도쿄. 한국 사용자 기준으로 지연이 가장 낮다.
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  PORT = "3000"
+  # SQLite 를 볼륨 마운트 경로에 둔다. 컨테이너 파일시스템은 재배포마다 사라진다.
+  BOKGIBOT_DB_PATH = "/data/bokgibot.db"
+
+# 영속 볼륨. 사용자 계정·암호화된 API 키·거래 기록이 모두 여기에 있다.
+# 이 볼륨을 잃으면 복구할 방법이 없으므로 스냅샷 정책을 반드시 확인할 것.
+[mounts]
+  source = "bokgibot_data"
+  destination = "/data"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  # 단일 머신 전제를 설정으로도 고정한다.
+  auto_stop_machines = "off"
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ["app"]
+
+  [http_service.concurrency]
+    # 단일 머신이므로 동시 요청을 넉넉히 받는다. 넘치면 큐잉되지 게 아니라
+    # 새 머신이 뜨는 것을 원치 않기 때문에 한도를 높게 잡는다.
+    type = "requests"
+    soft_limit = 200
+    hard_limit = 250
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"
